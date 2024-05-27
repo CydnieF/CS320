@@ -74,6 +74,10 @@ public class ContactService {
             throw new IllegalArgumentException("Contact ID not found");
         }
         contact.setAddress(newAddress);
+    }
 
+    // Get a contact by ID
+    public Contact getContact(String contactID) {
+        return contacts.get(contactID);
     }
 }

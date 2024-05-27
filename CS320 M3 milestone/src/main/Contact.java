@@ -20,7 +20,7 @@ import java.util.HashSet;
 
 public class Contact {
     private static final Set<String> existingContactIDs = new HashSet<>();
-    private final String contactID;  // contactID shouldn't be modified
+    private String contactID;  // contactID shouldn't be modified
     private String firstName;
     private String lastName;
     private String number;
@@ -58,14 +58,15 @@ public class Contact {
         existingContactIDs.add(contactID);
     }
 
-    public String getContactID() { // possibly remove??
+    public String getContactID() {
         return contactID;
     }
-
+    
     public String getFirstName() {
         return firstName;
     }
 
+    // first name cannot be null or greater than 10
     public void setFirstName(String firstName) {
         if (firstName == null || (firstName.length() > 10)) {
             throw new IllegalArgumentException("Invalid first name");
