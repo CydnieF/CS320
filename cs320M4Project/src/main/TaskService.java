@@ -5,7 +5,10 @@ import java.util.Map;
 
 public class TaskService {
 	// stores tasks and their attributes
-    private final Map<String, Task> tasks = new HashMap<>();
+    private final Map<String, Task> tasks; //= new HashMap<>();
+    public TaskService() {
+    	this.tasks = new HashMap <>();
+    }
 
     // allows for a new task to be created
     public void addTask(String taskID, String taskName, String taskDescription) {
@@ -28,7 +31,7 @@ public class TaskService {
     }
 
     // allow for task's name to be updated via task ID
-    public void updateTasktaskName(String taskID, String newTaskName) {
+    public void updateTaskName(String taskID, String newTaskName) {
         Task task = tasks.get(taskID);
         if (task == null) {
             throw new IllegalArgumentException("Task ID not found.");
@@ -44,9 +47,10 @@ public class TaskService {
         }
         task.setTaskDescription(newTaskDescription);
     }
+    
+    // get task information via task ID
+    public Task getTask (String taskID) {
+    	return tasks.get(taskID);
+    }
 
-    // Optional: Get a task by ID
-    //public Task getTask(String taskID) {
-        //return tasks.get(taskID);
-    //}
 }
