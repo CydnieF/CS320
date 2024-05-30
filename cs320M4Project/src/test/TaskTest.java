@@ -1,3 +1,8 @@
+/*  
+ *  Developer: Cydnie Fisher
+ *  Date: May 29th, 2024
+ *  Description: JUnit tests for main.Task
+ */
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,80 +22,70 @@ class TaskTest {
 		assertEquals("task description", task.getTaskDescription());
 	}
 	
-	@Test // tests that assertion is thrown if task ID is > 10 characters
-	void testTaskIDTooLong() {
+	@Test // tests that assertion is thrown if task ID is invalid
+	void testTaskIDInvalid() {
+		// task ID is too long
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			new Task("12345123456", "task name", "task description");
+			new Task("12345123456", "task name", "task description");	
 		});
-	}
-	
-	@Test // tests that assertion is thrown if task ID is null
-	void testTaskIDNull() {
+		// task ID is null
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			new Task(null, "task name", "task description");
 		});
 	}
-	
-	@Test // tests that assertion is thrown if task name is > 20 characters
-	void testTaskNameTooLong() {
+		
+	@Test // tests that assertion is thrown if task name is invalid
+	void testTaskNameInvalid() {
+		// task Name is too long
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			new Task("1234512345", "task name 1234567890-", "task description");
 		});
-	}
-		
-	@Test // tests that assertion is thrown if task name null
-	void testTaskNameNull() {
+		// task name is null
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			new Task("1234512345", null, "task description");
 		});
 	}
 
-	@Test // tests that assertion is thrown if task description is > 50 characters
-	void testTaskDescriptionTooLong() {
+	@Test // tests that assertion is thrown if task description is invalid
+	void testTaskDescriptionInvalid() {
+		// task description is too long
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			new Task("1234512345", "task name", 
 					"task description 1234567890qwertyuiopasdfghjklzxcvbnm");
 		});
-	}
-			
-	@Test // tests that assertion is thrown if task description null
-	void testTaskDiscriptionNull() {
+		// task description is null
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			new Task("1234512345", "task name", null);
 		});
 	}
 		
-	@Test
+	@Test // tests setter method for task name, and if appropriate exceptions are thrown
 	void testSetTaskName () {
 		Task task = new Task ("1234512345", "task name", "task description");
 		task.setTaskName ("name");
 		assertEquals("name", task.getTaskName());
-		// too long
+		// task name is too long
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
             task.setTaskName("task name 1234567890-");
         });
-		
-        // null
+        // task name is null
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             task.setTaskName(null);
         });
 	}
 	
-	@Test
+	@Test // tests setter method for task description, and if appropriate exceptions are thrown
 	void testSetTaskDescription () {
 		Task task = new Task ("1234512345", "task name", "task description");
 		task.setTaskDescription ("description");
 		assertEquals("description", task.getTaskDescription());
-		// too long
+		// task description is too long
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
             task.setTaskDescription("task description 1234567890qwertyuiopasdfghjklzxcvbnm");
-        });
-		
-        // null
+        });		
+        // task description is null
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             task.setTaskDescription(null);
         });
 	}
-
 }
-

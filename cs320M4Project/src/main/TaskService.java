@@ -1,3 +1,8 @@
+/*  
+ *  Developer: Cydnie Fisher
+ *  Date: May 29th, 2024
+ *  Description: Allows for tasks to be added, modified, and deleted
+ */
 package main;
 
 import java.util.HashMap;
@@ -40,7 +45,7 @@ public class TaskService {
     }
 
     // allow for task's description to be updated via task ID
-    public void updateTasktaskDescription(String taskID, String newTaskDescription) {
+    public void updateTaskDescription(String taskID, String newTaskDescription) {
         Task task = tasks.get(taskID);
         if (task == null) {
             throw new IllegalArgumentException("Task ID not found.");
